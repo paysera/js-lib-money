@@ -1,1 +1,3 @@
-# js-lib-money
+# @paysera/money
+
+Comming soon...
