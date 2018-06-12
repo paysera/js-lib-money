@@ -1,0 +1,6 @@
+{
+    "extends": "@paysera",
+    "env": {
+        "jest": true
+    }
+}

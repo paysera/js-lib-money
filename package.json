@@ -1,0 +1,42 @@
+{
+  "name": "@paysera/money",
+  "version": "0.0.1",
+  "description": "A library for working with Money",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "webpack --mode production --config webpack.config.js",
+    "dev": "webpack-dev-server --mode development --config webpack.config.js",
+    "test": "jest --config jest.config.js",
+    "test:watch": "jest --config jest.config.js --watchAll",
+    "lint": "eslint src/"
+  },
+  "author": "Paysera",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/paysera/js-lib-money.git"
+  },
+  "engines": {
+    "node": ">=8.11.1"
+  },
+  "dependencies": {
+    "bignumber.js": "^7.2.1",
+    "lodash-es": "^4.17.10"
+  },
+  "devDependencies": {
+    "@paysera/eslint-config": "0.0.1",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-builtin-extend": "^1.1.2",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^4.19.1",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.9.1",
+    "jest": "^23.1.0",
+    "webpack": "^4.12.0",
+    "webpack-cli": "^3.0.3",
+    "webpack-dev-server": "^3.1.4"
+  }
+}
