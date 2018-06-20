@@ -1,7 +1,7 @@
-import { isString, isNumber, isUndefined } from 'lodash-es';
-
+import { isUndefined } from 'lodash-es';
+import { parseAmount, parseCurrency } from './util';
 import fractions from './fractions';
-import { DifferentCurrenciesError, MoneyError, UnsupportedAmountError, UnsupportedCurrencyError } from './Error';
+import { DifferentCurrenciesError, MoneyError, UnsupportedCurrencyError } from './Error';
 import BigNumberMath from './BigNumberMath';
 
 const DEFAULT_DECIMAL_PLACES = 6;
@@ -15,47 +15,9 @@ export default class Money {
      * @param {?number} decimalPlaces
      */
     constructor(amount = null, currency = null, decimalPlaces = null) {
-        this.amount = null;
-        this.currency = null;
+        this.amount = parseAmount(amount);
+        this.currency = parseCurrency(currency);
         this.decimalPlaces = decimalPlaces === null ? DEFAULT_DECIMAL_PLACES : decimalPlaces;
-
-        if (amount !== null) {
-            this.setAmount(amount);
-        }
-        if (currency !== null) {
-            this.setCurrency(currency);
-        }
-    }
-
-    /**
-     * @param {(string|number)} amount
-     *
-     * @returns {Money}
-     */
-    setAmount(amount) {
-        if (amount === '' || amount === null) {
-            this.amount = null;
-        } else if (isNumber(amount)) {
-            this.amount = amount;
-        } else if (isString(amount)) {
-            let formattedAmount = amount.replace(',', '.');
-
-            if (formattedAmount.split('.').length > 2) {
-                throw new UnsupportedAmountError(`Invalid amount: ${amount}`);
-            }
-
-            if (!formattedAmount.match(/^[-+]?\d+(\.\d+)?$/)) {
-                throw new UnsupportedAmountError(`Amount has invalid chars: ${amount}`);
-            }
-
-            formattedAmount = formattedAmount.replace(/^([-+]?)0+(\d)/, '$1$2');
-
-            this.amount = formattedAmount !== '' ? formattedAmount : null;
-        } else {
-            throw new UnsupportedAmountError(`Amount is neither string nor number: ${amount}`);
-        }
-
-        return this;
     }
 
     /**
@@ -83,23 +45,6 @@ export default class Money {
         }
 
         return integerRepresentation;
-    }
-
-    /**
-     * @param {string} currency
-     *
-     * @returns {Money}
-     */
-    setCurrency(currency) {
-        const upperCaseCurrency = currency.toUpperCase();
-
-        if (isUndefined(fractions[upperCaseCurrency])) {
-            throw new UnsupportedCurrencyError(`Unsupported currency: ${currency}`);
-        }
-
-        this.currency = upperCaseCurrency;
-
-        return this;
     }
 
     /**
