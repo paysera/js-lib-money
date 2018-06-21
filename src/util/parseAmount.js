@@ -20,9 +20,7 @@ export default (amount) => {
         formattedAmount = formattedAmount.replace(/^([-+]?)0+(\d)/, '$1$2');
 
         return formattedAmount !== '' ? formattedAmount : null;
-    } else {
-        throw new UnsupportedAmountError(`Amount is neither string nor number: ${amount}`);
     }
 
-    return null;
-}
+    throw new UnsupportedAmountError(`Amount is neither string nor number: ${amount}`);
+};
