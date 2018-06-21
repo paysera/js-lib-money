@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "bignumber.js": "^7.2.1",
+    "lodash": "^4.17.10",
     "lodash-es": "^4.17.10"
   },
   "devDependencies": {

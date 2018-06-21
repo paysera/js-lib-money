@@ -39,9 +39,7 @@ module.exports = (env, argv) => {
             watchContentBase: true,
             port: 9000
         };
-    }
 
-    if (argv.mode === 'development') {
         config.plugins = [
             new webpack.DefinePlugin({ "process.env.NODE_ENV": JSON.stringify("development") }),
             new webpack.optimize.ModuleConcatenationPlugin(),
