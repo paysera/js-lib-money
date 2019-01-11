@@ -469,6 +469,22 @@ moneyOperationTestCases(
 
 moneyOperationTestCases(
     [
+        [1, null, UnsupportedCurrencyError],
+        ['1', null, UnsupportedCurrencyError],
+        [null, null, UnsupportedCurrencyError],
+        [1, '', UnsupportedCurrencyError],
+        ['1', '', UnsupportedCurrencyError],
+        [null, '', UnsupportedCurrencyError],
+    ],
+    'create money without currency',
+    '.create(%s, %s) => %s',
+    (amount, currency, expected) => {
+        expect(() => new Money(amount, currency)).toThrowError(expected);
+    },
+);
+
+moneyOperationTestCases(
+    [
         [new Money('1', 'EUR'), 100],
         [new Money('10', 'AMD'), 10],
         [new Money('100', 'AOA'), 1000],
