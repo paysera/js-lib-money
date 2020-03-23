@@ -21,6 +21,8 @@ moneyOperationTestCases(
         [new Money('-0.5', 'EUR'), new Money('-0.5', 'EUR'), new Money('-1', 'EUR')],
         [new Money('-0.5', 'RUB'), new Money('0', 'RUB'), new Money('-0.5', 'RUB')],
         [new Money('-0', 'USD'), new Money('0', 'USD'), new Money('0', 'USD')],
+        [new Money('0.000001', 'XAU'), new Money('0.000010', 'XAU'), new Money('0.000011', 'XAU')],
+        [new Money('-0.0001', 'XAG'), new Money('0.0001', 'XAG'), new Money('0', 'XAG')],
     ],
     'add',
     '.add(%j, %j) => %j',
