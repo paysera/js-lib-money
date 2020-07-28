@@ -1,4 +1,5 @@
-import { isUndefined } from 'lodash-es';
+import isUndefined from 'lodash/isUndefined';
+
 import { parseAmount, parseCurrency } from './util';
 import fractions from './fractions';
 import { DifferentCurrenciesError, MoneyError, UnsupportedCurrencyError } from './Error';
