@@ -1,43 +1,62 @@
 {
   "name": "@paysera/money",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A library for working with Money",
   "main": "dist/main.js",
+  "module": "es/index.js",
   "scripts": {
-    "build": "webpack --mode production --config webpack.config.js",
-    "dev": "webpack-dev-server --mode development --config webpack.config.js",
-    "test": "jest --config jest.config.js",
-    "test:watch": "jest --config jest.config.js --watchAll",
-    "lint": "eslint src/"
+    "start": "webpack-dev-server --mode development --config demo/webpack.config.js",
+    "build": "npm run build:umd && npm run build:es",
+    "build:umd": "webpack --mode production --config webpack.config.js",
+    "build:es": "cross-env BABEL_ENV=es babel ./src --out-dir es --copy-files --ignore \"src/**/__tests__\"",
+    "clean": "rimraf dist es",
+    "test": "jest --config jest.config.js --no-cache",
+    "lint": "eslint --ext .js,.jsx .",
+    "prepublishOnly": "npm run test && npm run clean && npm run build"
   },
+  "files": [
+    "package.json",
+    "README.md",
+    "CHANGELOG.md",
+    "dist",
+    "es",
+    "src"
+  ],
   "author": "Paysera",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/paysera/js-lib-money.git"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "engines": {
     "node": ">=8.11.1"
   },
   "dependencies": {
     "bignumber.js": "^7.2.1",
-    "lodash": "^4.17.15",
-    "lodash-es": "^4.17.10"
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@paysera/eslint-config": "0.0.1",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.4",
-    "babel-plugin-transform-builtin-extend": "^1.1.2",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
-    "babel-preset-env": "^1.7.0",
-    "eslint": "^4.19.1",
-    "eslint-plugin-import": "^2.12.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.9.1",
-    "jest": "^23.6.0",
-    "webpack": "^4.12.0",
-    "webpack-cli": "^3.0.3",
-    "webpack-dev-server": "^3.1.4"
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
+    "@babel/plugin-transform-runtime": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "@paysera/eslint-config": "^1.0.0",
+    "babel-eslint": "^11.0.0-beta.2",
+    "babel-jest": "^26.1.0",
+    "babel-loader": "^8.1.0",
+    "cross-env": "^7.0.2",
+    "eslint": "^7.5.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest": "^23.19.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.4",
+    "jest": "^26.1.0",
+    "rimraf": "^3.0.2",
+    "webpack": "^4.44.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-node-externals": "^2.5.0"
   }
 }
