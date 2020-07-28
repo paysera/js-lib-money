@@ -1,9 +1,8 @@
 module.exports = {
+    transform: {
+        '^.+\\.jsx?$': 'babel-jest',
+    },
     roots: [
-        'src/',
+        '<rootDir>/src',
     ],
-    testRegex: '(/__tests__/.*\\.test)\\.jsx?$',
-    transformIgnorePatterns: [
-        '<rootDir>/node_modules/(?!lodash-es)'
-    ]
 };
