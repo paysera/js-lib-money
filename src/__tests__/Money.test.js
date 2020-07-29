@@ -1,5 +1,7 @@
 import Money from '../Money';
-import { DifferentCurrenciesError, MoneyError, UnsupportedAmountError, UnsupportedCurrencyError } from '../Error';
+import {
+    DifferentCurrenciesError, MoneyError, UnsupportedAmountError, UnsupportedCurrencyError,
+} from '../Error';
 
 const moneyOperationTestCases = (testCases, operation, testName, testImplementation) => {
     describe(`${operation}`, () => {

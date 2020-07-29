@@ -1,12 +1,18 @@
-import { isNumber, isString } from 'lodash-es';
+import isNumber from 'lodash/isNumber';
+import isString from 'lodash/isString';
+
 import { UnsupportedAmountError } from '../Error';
 
 export default (amount) => {
     if (amount === '' || amount === null) {
         return null;
-    } else if (isNumber(amount)) {
+    }
+
+    if (isNumber(amount)) {
         return amount;
-    } else if (isString(amount)) {
+    }
+
+    if (isString(amount)) {
         let formattedAmount = amount.replace(',', '.');
 
         if (formattedAmount.split('.').length > 2) {

@@ -1,25 +1,13 @@
 {
     "presets": [
-        ["env", {
-            "modules": false,
-            "targets": {
-                "node": "current",
-                "browsers": [
-                    "last 2 versions",
-                    "ie >= 9"
-                ]
-            }
-        }]
+        ["@babel/env", { "modules": false }]
     ],
     "plugins": [
-        ["babel-plugin-transform-builtin-extend", {
-            "globals": ["Error"]
-        }]
+        "@babel/plugin-transform-runtime"
     ],
     "env": {
         "test": {
-            "presets": [],
-            "plugins": ["transform-es2015-modules-commonjs"]
+            "presets": ["@babel/env"]
         }
     }
 }
