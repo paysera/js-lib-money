@@ -152,7 +152,7 @@ export default {
     WST: 2,
     XAF: 0,
     XAG: 4,
-    XAU: 6,
+    XAU: 5,
     XCD: 2,
     XOF: 0,
     XPF: 0,
